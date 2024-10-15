@@ -11,6 +11,12 @@ app.get("/", (request, response) => {
     })
 });
 
+app.post("/", (request, response) => {
+    response.json({
+        message: "POST request recieved!"
+    })
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
