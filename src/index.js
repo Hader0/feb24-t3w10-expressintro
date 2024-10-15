@@ -1,24 +1,38 @@
 const express = require("express");
-
-// Make an instance of the Express system so we can configure it - E.g. routes, settings...
+// Make an instance of the Express system
+// so we can configure it 
+// eg. routes, settings
 const app = express();
 
-// GET localhost:3000/
+// GET localhost:3000/ 
+// .get("/", (req, res) => {})
+// .get("/", (banana, elephant) => {})
 app.get("/", (request, response) => {
-    // response.send("<h3>Hello world!</h3>");
-    response.json({
-        message: "Hello world!"
-    })
+	// response.send("<h1>Hello world!</h1>");
+	response.json({
+		message:"Hello world!"
+	});
 });
 
 app.post("/", (request, response) => {
-    response.json({
-        message: "POST request recieved!"
-    })
+	response.json({
+		message: "POST request received!"
+	});
 });
+
+// http://localhost:3000/bananas
+app.post("/bananas", (request, response) => {
+	response.json({
+		message: "POST bananas received!"
+	});
+});
+
+const {router} = require("./controllers/pokemonController.js");
+// localhost:3000/pokemon/
+app.use("/pokemon", router);
 
 const PORT = 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server listening on localhost:${PORT}`);
+	console.log(`Server listening on localhost:${PORT}`);
 });
